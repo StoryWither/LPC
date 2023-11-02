@@ -1,8 +1,8 @@
 /* Esercizio 5
-data: 18/10/2023
-autore: Sebastian Ferrigno
-Input: Coefficienti di un polinomio di secondo grado e variabile di scelta
-Output: Radici del polinomio se appartenenti all'intervallo scelto
+    data: 18/10/2023
+    autore: Sebastian Ferrigno
+    Input: Coefficienti di un polinomio di secondo grado e variabile di scelta
+    Output: Radici del polinomio se appartenenti all'intervallo scelto
 */
 
 #include <math.h>

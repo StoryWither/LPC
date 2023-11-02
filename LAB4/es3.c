@@ -1,8 +1,8 @@
 /* Esercizio 3
-data: 18/10/2023
-autore: Sebastian Ferrigno
-Input: Coefficienti di un polinomio di secondo grado 
-Output: Radici del polinomio
+    data: 18/10/2023
+    autore: Sebastian Ferrigno
+    Input: Coefficienti di un polinomio di secondo grado 
+    Output: Radici del polinomio
 */
 
 #include <math.h>

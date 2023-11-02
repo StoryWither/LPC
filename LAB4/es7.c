@@ -1,8 +1,8 @@
 /* Esercizio 7
-data: 18/10/2023
-autore: Sebastian Ferrigno
-Input: 
-Output: 
+    data: 18/10/2023
+    autore: Sebastian Ferrigno
+    Input: Quantità di denaro inserita in una valuta scelta tra euro, dollari, bitcoin 
+    Output: Quantità convertita in un'altra valuta scelta
 */
 
 #include <stdio.h>
@@ -61,7 +61,7 @@ int main () {
 			return 1;
 	}
 
-	printf("Quantita convertita nella valuta scelta:\n");
+	printf("Quantita' convertita nella valuta scelta:\n");
 	printf("%lf\n", val_out);
 		
 

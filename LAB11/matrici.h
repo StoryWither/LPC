@@ -1,0 +1,13 @@
+int stampa_matrice(int size, double mat[size][size], int m, int n);
+int stampa_matrice_file(int size, double mat[size][size], int m, int n, char *nomefile);
+int leggi_matrice_file(int size, double mat[size][size], int* m, int* n, char *nomefile); 
+int leggi_matrice(int size, double mat[size][size], int m, int n);
+int trasponi_matrice (int size, double mat[size][size], double tras[size][size], int m, int n);
+int scambia_righe (int size, double mat[size][size], int m, int n, int p, int q);
+int prodotto_matrice_vettore (int size, double mat[size][size], double vec[size], int m, int n, int p, double result[size]);
+int prodotto_matrici (int size, double mat1[size][size], double mat2[size][size], int m, int n, int p, int q, double result[size][size]);
+int sostituzioni_indietro (int size, double mat[size][size], double vec[size], double result[size], int n);
+int calcolo_residui (int size, double mat[size][size], double vec[size], double sol[size], double res[size], int n);
+int leggi_sistema_file (int size, double mat[size][size], double vec[size], char *nomefile);
+int gen_matrice(int size, double mat[size][size], int m, int n);
+int copia_matrice (int size, double mat[size][size], double cpy[size][size], int m, int n);

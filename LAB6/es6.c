@@ -3,8 +3,8 @@
 #include <math.h>
 #define Nmax 100
 
-int crivello_eratostene (int* arr, int size, int n); 
-int scomposizione (int* arr, int size, int n); 
+int crivello_eratostene (int size, int arr[size], int n); 
+int scomposizione (int size, int arr[size], int n); 
 
 int main () {
     int n = 0;
@@ -15,8 +15,8 @@ int main () {
         scanf("%d", &n);
     } while (n < 2 || n > Nmax);
 
-    crivello_eratostene(primi, Nmax, n);
-    scomposizione(primi, Nmax, n);
+    crivello_eratostene(Nmax, primi, n);
+    scomposizione(Nmax, primi, n);
 
     check = 0;
     printf("Scomposizione di %d in fattori primi:\n", n);
@@ -35,7 +35,7 @@ int main () {
     return 0;
 }
 
-int crivello_eratostene (int* arr, int size, int n) {
+int crivello_eratostene (int size, int arr[size], int n) {
     if (n > size - 1) {
         fprintf(stderr, "crivello_eratostene: ERRORE: n troppo grande\n");
         return 1;
@@ -58,7 +58,7 @@ int crivello_eratostene (int* arr, int size, int n) {
     return 0;
 }
 
-int scomposizione (int* arr, int size, int n) {
+int scomposizione (int size, int arr[size], int n) {
     if (n > size - 1) {
         fprintf(stderr, "scomposizione: ERRORE: n troppo grande\n");
         return 1;

@@ -4,14 +4,13 @@
 #define Nmax 100
 
 void swap(int *a, int *b);
-void reverse_bubble_sort(int *arr, int size);
-void print_arr(int *arr, int size);
+void reverse_bubble_sort(int size, int arr[size]);
+void print_arr(int size, int arr[size]);
 
 int main() {
     srand(time(NULL));
     int n = 0;
     int u[Nmax];
-    int count = 0;
 
     printf("Inserire lunghezza vettore:\n");
     do {
@@ -22,9 +21,9 @@ int main() {
         u[i] = (rand() % 100) + 1;
     }
 
-    reverse_bubble_sort(u, n);
+    reverse_bubble_sort(n, u);
     printf("Componenti vettore u ordinate in senso decrescente:\n");
-    print_arr(u, n);
+    print_arr(n, u);
 
     return 0;
 }
@@ -35,7 +34,7 @@ void swap(int *a, int *b) {
     *b = temp;
 }
 
-void reverse_bubble_sort(int *arr, int size) {
+void reverse_bubble_sort(int size, int arr[size]) {
     int count = 0;
     do {
         count = 0;
@@ -48,7 +47,7 @@ void reverse_bubble_sort(int *arr, int size) {
     } while (count != size - 1);
 }
 
-void print_arr(int *arr, int size) {
+void print_arr(int size, int arr[size]) {
     for (int i = 0; i < size; i++)
         printf("%d\n", arr[i]);
 }

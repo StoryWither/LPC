@@ -8,7 +8,7 @@ int converti_base (int n, int B1, int B2);
 int main () {
 
     int m;
-    m = converti_base(2, 3, 2);
+    m = nBaseB(33, 2);
     printf("%d\n", m);
 
     return 0;

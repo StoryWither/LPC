@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <math.h>
 
 #define Nmax 1000
@@ -9,9 +10,10 @@ int crea_griglia (double left, double right, int n, int size, double nodes[size]
 double intpol_laplace (int size, double nodes[size], int n, int scelta, double x);
 
 int main () {
-    int s, n;
-    double a, b, z, pz, res;
+    int s, n, m;
+    double a, b, z, pz, max, res;
     double griglia[Nmax];
+    FILE* file = fopen("punti.gp", "w");
     printf("Scegliere una funzione dal menu:\n");
     printf("1) sin(x)\n");
     printf("2) ln(x)\n");
@@ -33,14 +35,25 @@ int main () {
     do {
         scanf("%d", &n);
     } while (n <= 0);
-    printf("Inserire il punto da calcolare con il polinomio interpolato:");
-    scanf("%lf", &z);
+    printf("Inserire il numero di punti da interpolare:\n");
+    do {
+        scanf("%d", &m);
+    } while (m <= 0);
     crea_griglia(a, b, n, Nmax, griglia); 
-    pz = intpol_laplace(Nmax, griglia, n, s, z);
-    res = f(s, z) - pz;
-    printf("Valore del polinomio interpolato: %lf\n", pz);
-    printf("Residuo:%lf\n", res);
 
+    double h = (b - a) / (m + 1);
+    max = -1;
+    for (int i = 1; i <= m; i++) {
+        z = a + i * h;
+        pz = intpol_laplace(Nmax, griglia, n, s, z);
+        fprintf(file, "%lf %lf\n", z, pz);
+        res = fabs(f(s, z) - pz);
+        max = max < res ? res : max;
+    }
+
+    fclose(file);
+    system("gnuplot << EOF\nplot sin(x), \"punti.gp\"\npause mouse close\nEOF");
+    printf("Massimo residui: %lf\n", max);
 
     return 0;
 }
@@ -70,10 +83,10 @@ int crea_griglia (double left, double right, int n, int size, double nodes[size]
         fprintf(stderr, "crea_griglia: ERROR: spazio insufficiente\n");
         return 1;
     }
-
-    double h = (right - left) / n;
+    srand(time(NULL));
+    
     for (int i = 0; i <= n; i++)
-        nodes[i] = left + i * h;
+        nodes[i] = (rand() / (double) RAND_MAX) * (right - left) + left;
     
     return 0;
 }

@@ -1,3 +1,10 @@
+/* Esercizio 3
+data: 25/10/2023
+autore: Sebastian Ferrigno
+Input: Numero intero positivo n
+Output: n! (n fattoriale) calcolato in diversi tipi di variabile
+*/
+
 #include <stdio.h>
 
 int main () {

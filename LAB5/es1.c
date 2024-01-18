@@ -1,3 +1,10 @@
+/* Esercizio 1
+data: 25/10/2023
+autore: Sebastian Ferrigno
+Input: Numero intero positivo n
+Output: Somma dei primi numeri n pari calcolati in due modi diversi
+*/
+
 #include <stdio.h>
 
 int main() {

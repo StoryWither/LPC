@@ -1,3 +1,10 @@
+/* Esercizio 7
+data: 25/10/2023
+autore: Sebastian Ferrigno
+Input: ---
+Output: Precisione macchina eps in precisione doppia (double)
+*/
+
 #include <stdio.h>
 
 int main() {

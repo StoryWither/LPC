@@ -1,3 +1,10 @@
+/* Esercizio 6
+data: 25/10/2023
+autore: Sebastian Ferrigno
+Input: Un intero positivo n ed n numeri reali
+Output: Il massimo e il minimo tra i numeri reali presi in input
+*/
+
 #include <stdio.h>
 
 int main () {

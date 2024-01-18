@@ -1,3 +1,12 @@
+/* Esercizio 8
+data: 25/10/2023
+autore: Sebastian Ferrigno
+Input: Un numero reale positivo toll
+Output: Approssimazione di e con la serie S_n = sum(k=0, N) 1 / k!,
+        con N tale che 3/N! < toll.
+        Stampa a schermo dell'errore tra S_n calcolato ed exp(1) ad ogni iterazione.
+*/
+
 #include <stdio.h>
 #include <math.h>
 
@@ -22,5 +31,3 @@ int main () {
 
     return 0;
 }
-
-

@@ -1,3 +1,10 @@
+/* Esercizio 2
+data: 25/10/2023
+autore: Sebastian Ferrigno
+Input: Numero intero positivo n
+Output: Somma dei primi n numeri al quadrato calcolata in due modi diversi
+*/
+
 #include <stdio.h>
 
 int main () {

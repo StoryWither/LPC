@@ -1,3 +1,10 @@
+/* Esercizio 5
+data: 25/10/2023
+autore: Sebastian Ferrigno
+Input: Un intero positivo n e un intero positivo k <= n
+Output: Il risultato del calcolo del coefficiente binomiale "n su k" in al piu' Nmax cicli 
+*/
+
 #include <stdio.h>
 #define Nmax 100
 #define toll 1

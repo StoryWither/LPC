@@ -1,3 +1,10 @@
+/* Esercizio 4
+data: 25/10/2023
+autore: Sebastian Ferrigno
+Input: Un intero positivo n e un intero positivo k <= n
+Output: Il coefficiente binomiale "n su k"
+*/
+
 #include <stdio.h>
 
 int main() {

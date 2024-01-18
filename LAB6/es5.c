@@ -1,3 +1,13 @@
+/* Reverse_bubble_sort (Esercizio 5)
+data: 07/11/2023
+autore: Sebastian Ferrigno
+Input: Un numero intero positivo n <= 100
+Output: Il programma genera un vettore u con n componenti pseudo-random,
+        successivamente chiama la function `reverse_bubble_sort` che riordina
+        il vettore u in senso decrescente. Infine stampa il vettore riordinato
+        a schermo.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

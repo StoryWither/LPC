@@ -1,3 +1,12 @@
+/* Esercizio 3
+data: 07/11/2023
+autore: Sebastian Ferrigno
+Input: Numero intero positivo n
+Output: Il programma genera n componenti pseudo-random tra 1 e 100,
+        i numeri pari e dispari vengono salvati in due vettori diversi
+        che vengono successivamente stampati a video.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

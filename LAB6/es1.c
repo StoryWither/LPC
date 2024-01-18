@@ -1,3 +1,10 @@
+/* Esercizio 1
+data: 07/11/2023
+autore: Sebastian Ferrigno
+Input: Numero intero positivo n
+Output: Vettore di n componenti pseudo-random stampate a video in ordine inverso
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

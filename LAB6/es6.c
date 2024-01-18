@@ -1,3 +1,10 @@
+/* Scomposizione_in_fattori_primi (Esercizio 6)
+data: 07/11/2023
+autore: Sebastian Ferrigno
+Input: Un numero intero positivo n 
+Output: Scomposizione in fattori primi di n stampata a schermo
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -37,8 +44,8 @@ int main () {
 
 int crivello_eratostene (int size, int arr[size], int n) {
     if (n > size - 1) {
-        fprintf(stderr, "crivello_eratostene: ERRORE: n troppo grande\n");
-        return 1;
+        fprintf(stderr, "crivello_eratostene: ERROR: n troppo grande\n");
+        return -1;
     }
 
     int rootN = sqrt(n);
@@ -60,8 +67,8 @@ int crivello_eratostene (int size, int arr[size], int n) {
 
 int scomposizione (int size, int arr[size], int n) {
     if (n > size - 1) {
-        fprintf(stderr, "scomposizione: ERRORE: n troppo grande\n");
-        return 1;
+        fprintf(stderr, "scomposizione: ERROR: n troppo grande\n");
+        return -1;
     }
 
     int i = 2; 

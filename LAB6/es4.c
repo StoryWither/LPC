@@ -1,3 +1,15 @@
+/* Esercizio 4
+data: 07/11/2023
+autore: Sebastian Ferrigno
+Input: Un numero intero positivo n ed n numeri interi
+Output: Il programma suddivide i numeri letti in quattro vettori:
+        - Vettore A: Numeri dispari
+        - Vettore B: Multipli di 4 
+        - Vettore C: Multipli di 10
+        - Vettore D: Tutti gli altri
+        Il programma stampa a video i contenuti dei 4 vettori oppure dichiara se sono vuoti
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

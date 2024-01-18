@@ -1,3 +1,12 @@
+/* Esercizio 2
+data: 07/11/2023
+autore: Sebastian Ferrigno
+Input: Numero intero positivo n
+Output: Viene generato un vettore di n componenti pseudo-random compresi tra 1 e n,
+        viene trovata la componente massima in modulo e viene stampata a video
+        assieme al suo indice.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

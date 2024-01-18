@@ -1,3 +1,12 @@
+/* Esercizio 6
+data: 08/11/2023
+autore: Sebastian Ferrigno
+Input: Un intero positivo n <= 100
+Output: Il programma genera due vettori di n componenti psuedo-random nell'intervallo 
+        reale [-1, 1], successivamente calcola il prodotto scalare dei due vettori e
+        lo stampa a schermo.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

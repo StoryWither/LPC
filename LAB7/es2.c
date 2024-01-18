@@ -1,3 +1,15 @@
+/* Esercizio 2
+data: 08/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma stampa un menu' con una scelta di 7 funzioni con intervalli associati,
+        in input il programma legge un intero s corrispondente alla scelta,
+        un intero positivo m e due numeri reali a e b con b > a.
+
+Output: Il programma calcola i valori della funzione scelta in m punti equispaziati 
+        sull'intervallo [a, b] e trova il valore massimo della function nei punti,
+        infine stampa a video il massimo trovato e le ascisse in cui assume tale valore.
+*/
+
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>

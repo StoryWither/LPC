@@ -1,3 +1,11 @@
+/* Esercizio 5
+data: 08/11/2023
+autore: Sebastian Ferrigno
+Input: Un intero positivo n <= 100
+Output: Il programma genera un vettore di n componenti psuedo-random nell'intervallo 
+        reale [-1, 1], successivamente ordina l'array e poi lo stampa a schermo.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

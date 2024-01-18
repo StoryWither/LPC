@@ -1,3 +1,10 @@
+/* Esercizio 3
+data: 08/11/2023
+autore: Sebastian Ferrigno
+Input: Un intero positivo n <= 100 e n numeri interi che vengono salvati in un array.
+Output: Massimo dell'array.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #define Nmax 100

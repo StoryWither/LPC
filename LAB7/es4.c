@@ -1,3 +1,11 @@
+/* Esercizio 4
+data: 08/11/2023
+autore: Sebastian Ferrigno
+Input: Un intero positivo n <= 100 e n numeri interi che vengono salvati in un array.
+Output: Il programma trova il massimo dell'array e salva in un vettore gli indici in
+        cui e` presente tale valore, poi stampa a video il massimo e gli indici.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #define Nmax 100

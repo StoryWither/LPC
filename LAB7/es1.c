@@ -1,3 +1,13 @@
+/* Esercizio 1
+data: 08/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma stampa un menu' con una scelta di 8 funzioni con intervalli associati,
+        in input il programma legge un intero s corrispondente alla scelta ed numero reale x.
+
+Output: Se il numero x appartiene all'intervallo specificato nel menu', allora viene calcolato
+        e stampato a video il valore della funzione scelta calcolata in x.
+*/
+
 #include <stdio.h>
 #include <math.h>
 #define PI 3.1415926535

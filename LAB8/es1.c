@@ -1,3 +1,13 @@
+/* Esercizio 1
+data: 15/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge i file di input da un file di testo chiamato 'vettore.txt'.
+        Il file deve contenere un intero positivo m nella prima riga ed m componenti
+        di un vettore nelle righe successive.
+
+Output: Il programma stampa a schermo il vettore letto da file.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 

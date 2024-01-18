@@ -1,3 +1,17 @@
+/* Esercizio 4
+data: 15/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma stampa un menu' con una scelta di 8 funzioni con intervalli associati,
+        in input il programma legge un intero s corrispondente alla scelta, un intero
+        positivo m e due numeri reali a e b con b > a.
+
+Output: Il programma calcola la funzione scelta in m punti equispaziati sull'intervallo [a, b], 
+        nel calcolo dei valori scrive su file una tabella con le ascisse dei punti nella prima
+        colonna e i valori della funzionio con una piccola perturbazione pseudo-random nella seconda. 
+        Successivamente il programma esegue uno script per graficare i punti salvati in tabella e la
+        funzione scelta con il programma gnuplot.
+*/
+
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>

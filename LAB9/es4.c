@@ -1,3 +1,13 @@
+/* Esercizio 4
+data: 22/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge tre interi positivi m, n, p e successivamente le
+        componenti (double) di una matrice mxn e di un vettore di lunghezza p.
+
+Output: Il programma calcola il prodotto tra la matrice e il vettore letti in input,
+        poi stampa a video la matrice, il vettore e il prodotto.
+*/
+
 #include <stdio.h>
 #define MAX_DIM 100
 

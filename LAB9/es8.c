@@ -1,3 +1,15 @@
+/* Esercizio 8
+data: 22/11/2023
+autore: Sebastian Ferrigno
+Input: Un intero positivo n.
+Output: Il programma genera una matrice A triangolare superiore nxn di
+        componenti pseudo-random reali tra 0 e 100 e un vettore b
+        le cui componenti sono la somma delle righe della matrice.
+        Successivamente il programma risolve il sistema lineare Ax = b
+        con l'algoritmo delle sostituzioni all'indietro. Infine stampa
+        a video la matrice A, il vettore b ed il vettore soluzione x.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

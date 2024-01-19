@@ -1,3 +1,16 @@
+/* Esercizio 10
+data: 22/11/2023
+autore: Sebastian Ferrigno
+Input: Un intero positivo n.
+Output: Il programma genera due matrici triangolari inferiori nxn con
+        componenti pseudo-random reali tra 0 e 100. Il programma calcola
+        il prodotto tra le due matrici con un algoritmo ottimizzato per
+        le matrici triangolari inferiore. Il prodotto e` ancora una matrice
+        triangolare inferiore e il conto di operazioni (moltiplicazioni)
+        asintotico e` (n^3)/6 (quello del prodotto tra matrici normali e` n^3).
+        Infine il programma stampa le due matrici generate ed il loro prodotto.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

@@ -1,3 +1,13 @@
+/* Esercizio 1
+data: 22/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge i file di input da un file di testo chiamato 'matrice.txt'.
+        Il file deve contenere due interi positivi m e n nella prima riga e 
+        le componenti (double) della matrice nelle righe successive.
+
+Output: Il programma stampa a video la matrice del file.
+*/
+
 #include <stdio.h>
 #define MAX_DIM 100
 
@@ -10,7 +20,9 @@ int main() {
     double A[MAX_DIM][MAX_DIM];
     int m = 0;
     int n = 0;
-    leggi_matrice_file(MAX_DIM, A, &m, &n, "matrice.txt");
+    if (leggi_matrice_file(MAX_DIM, A, &m, &n, "matrice.txt") == 1)
+        return 1;
+
     stampa_matrice(MAX_DIM, A, m, n);
 
     return 0; 

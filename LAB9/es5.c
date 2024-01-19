@@ -1,3 +1,13 @@
+/* Esercizio 5
+data: 22/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge un intero positivo n e successivamente le
+        componenti (double) di due vettori v, u di lungehzza n.
+
+Output: Il programma calcola il prodotto scalare tra i due vettori,
+        poi stampa a video i due vettore e il loro prodotto scalare.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX_DIM 100

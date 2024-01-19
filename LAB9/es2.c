@@ -1,3 +1,13 @@
+/* Esercizio 2
+data: 22/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge due interi positivi m ed n e successivamente le
+        componenti (double) di una matrice mxn.
+
+Output: Il programma calcola la trasposta della matrice letta in input e 
+        stampa a video la matrice letta e la sua trasposta.
+*/
+
 #include <stdio.h>
 #define MAX_DIM 100
 

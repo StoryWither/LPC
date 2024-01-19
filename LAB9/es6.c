@@ -1,3 +1,14 @@
+/* Esercizio 6
+data: 22/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge quattro intero positivi m, n, p, q e successivamente le
+        componenti (double) di una matrice mxn e di una matrice pxq.
+
+Output: Il programma calcola, se le dimensioni sono compatibili, il prodotto tra le
+        matrici lette in input, successivamente stampa a video le due matrici ed il
+        loro prodotto.
+*/
+
 #include <stdio.h>
 #define MAX_DIM 100
 

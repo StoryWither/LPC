@@ -1,3 +1,16 @@
+/* Esercizio 9
+data: 22/11/2023
+autore: Sebastian Ferrigno
+Input: Un intero positivo n.
+Output: Il programma genera una matrice A triangolare superiore nxn e un vettore b
+        di lunghezza n, entrambi di componenti pseudo-random reali tra 0 e 10.
+        Successivamente il programma risolve il sistema lineare Ax = b
+        con l'algoritmo delle sostituzioni all'indietro e calcola il vettore
+        dei residui r = b - Ax. Infine stampa a video la matrice A, il vettore b,
+        il vettore soluzione x, il vettore dei residui r e il massimo (in modulo) dei
+        residui.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

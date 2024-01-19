@@ -1,3 +1,11 @@
+/* Esercizio 7
+data: 22/11/2023
+autore: Sebastian Ferrigno
+Input: Un intero positivo n.
+Output: Il programma genera una matrice triangolare superiore nxn di
+        componenti pseudo-random reali tra 0 e 100.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

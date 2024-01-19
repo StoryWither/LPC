@@ -1,3 +1,12 @@
+/* Esercizio 3
+data: 22/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge quattro interi positivi m, n, p, q e successivamente le
+        componenti (double) di una matrice mxn.
+
+Output: Il programma crea una matrice in cui scambia le righe p e q della matrice originale,
+        successivamente stampa a video entrambe le matrici.
+*/
 #include <stdio.h>
 #define MAX_DIM 100
 
@@ -49,12 +58,12 @@ int scambia_righe (int size, double mat[size][size], int m, int n, int p, int q)
         return 1;
     }
 
-    double temp[n];
+    double temp;
 
     for (int j = 0; j < n; j++) {
-        temp[j] = mat[q - 1][j];
+        temp = mat[q - 1][j];
         mat[q - 1][j] = mat[p - 1][j];
-        mat[p - 1][j] = temp[j];
+        mat[p - 1][j] = temp;
     }
      
     return 0;

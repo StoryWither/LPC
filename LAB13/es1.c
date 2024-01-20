@@ -1,5 +1,5 @@
 /* Interpolazione_Lagrange (Esercizio 1)
-data: 13/12/2023
+data: 20/12/2023
 autore: Sebastian Ferrigno
 Input: Il programma offre una scelta di funzioni con un menu`. L'utente sceglie
         una funzione inserendo un intero di scelta s. Poi inserisce gli estremi

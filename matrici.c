@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 #include "matrici.h"
 
 int stampa_matrice(int size, double mat[size][size], int m, int n) {
@@ -217,6 +218,120 @@ int copia_matrice (int size, double mat[size][size], double cpy[size][size], int
     for (int i = 0; i < m; i++)
         for (int j = 0; j < n; j++)
             cpy[i][j] = mat[i][j];
+
+    return 0;
+}
+
+int elim_gauss_pivoting (int size, double mat[size][size], double vec[size], int n) {
+    if (n > size) {
+        fprintf(stderr, "elim_gauss_pivoting: ERROR: spazio insufficiente\n");
+        exit(1);
+    }
+
+    double mult = 0;
+    int imax = 0;
+    double temp = 0;
+
+    for (int k = 0; k < n; k++) { 
+        imax = k;
+        for (int i = k + 1; i < n; i++)
+            if (fabs(mat[i][k]) > fabs(mat[imax][k]))
+                imax = i;
+
+        if (mat[imax][k] == 0)
+            return 1;
+
+        if (imax != k) {
+            for (int j = k; j < n; j++) {
+                temp = mat[imax][j];
+                mat[imax][j] = mat[k][j];
+                mat[k][j] = temp;
+            }
+            temp = vec[imax];
+            vec[imax] = vec[k];
+            vec[k] = temp;
+        }
+
+        for (int i = k + 1; i < n; i++) {
+            mult = mat[i][k] / mat[k][k];
+
+            for (int j = k + 1; j < n; j++)
+                mat[i][j] -= mult * mat[k][j];
+            vec[i] -= mult * vec[k];
+        }
+    }
+
+    return 0;
+}
+
+int fattorizzazione_LU (int size, double U[size][size], double L[size][size], int n) {
+    if (n > size) {
+        fprintf(stderr, "fattorizzazione_LU: ERROR: spazio insufficiente\n");
+        exit(1);
+    }
+
+    double mult = 0;
+
+    for (int k = 0; k < n; k++) { 
+        if (U[k][k] == 0)
+            return 1;
+
+        L[k][k] = 1;
+        for (int i = k + 1; i < n; i++) {
+            mult = U[i][k] / U[k][k];
+            L[i][k] = mult;
+
+            for (int j = k + 1; j < n; j++)
+                U[i][j] -= mult * U[k][j];
+        }
+    }
+
+    return 0;
+}
+
+int fattorizzazione_PA_LU (int size, double P[size][size], double U[size][size], double L[size][size], int n) {
+    if (n > size) {
+        fprintf(stderr, "fattorizzazione_PA_LU: ERROR: spazio insufficiente\n");
+        exit(1);
+    }
+    for (int i = 0; i < n; i++)
+        P[i][i] = 1;
+
+    double mult = 0;
+    double temp;
+    int imax = 0;
+
+    for (int k = 0; k < n; k++) { 
+        imax = k;
+        for (int i = k + 1; i < n; i++)
+            if (fabs(U[i][k]) > fabs(U[imax][k]))
+                imax = i;
+
+        if (U[imax][k] == 0)
+            return 1;
+
+        if (imax != k) {
+            for (int j = k; j < n; j++) {
+                temp = U[imax][j];
+                U[imax][j] = U[k][j];
+                U[k][j] = temp;
+            }
+            for (int j = 0; j < n; j++) {
+                temp = P[imax][j];
+                P[imax][j] = P[k][j];
+                P[k][j] = temp;
+            }
+        }
+
+        L[k][k] = 1;
+        for (int i = k + 1; i < n; i++) {
+            mult = U[i][k] / U[k][k];
+            L[i][k] = mult;
+
+            for (int j = k + 1; j < n; j++)
+                U[i][j] -= mult * U[k][j];
+        }
+    }
 
     return 0;
 }

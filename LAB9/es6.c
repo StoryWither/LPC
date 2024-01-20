@@ -108,4 +108,3 @@ int leggi_matrice(int size, double mat[size][size], int m, int n) {
 
     return 0;
 }
-

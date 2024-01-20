@@ -57,7 +57,7 @@ int elim_gauss_tridiagonale (int size, double mat[size][size], double vec[size],
     }
     double mult = 0;
 
-    for (int k = 0; k < n; k++) {
+    for (int k = 0; k < n - 1; k++) {
         if (mat[k][k] == 0)
             return 1;
         mult = mat[k + 1][k] / mat[k][k];

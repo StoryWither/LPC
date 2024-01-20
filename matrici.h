@@ -11,3 +11,6 @@ int calcolo_residui (int size, double mat[size][size], double vec[size], double 
 int leggi_sistema_file (int size, double mat[size][size], double vec[size], char *nomefile);
 int gen_matrice(int size, double mat[size][size], int m, int n);
 int copia_matrice (int size, double mat[size][size], double cpy[size][size], int m, int n);
+int elim_gauss_pivoting (int size, double mat[size][size], double vec[size], int n);
+int fattorizzazione_LU (int size, double U[size][size], double L[size][size], int n);
+int fattorizzazione_PA_LU (int size, double P[size][size], double U[size][size], double L[size][size], int n);

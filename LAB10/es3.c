@@ -69,7 +69,7 @@ int main () {
 
 int elim_gauss_pivoting (int size, double mat[size][size], double vec[size], int n) {
     if (n > size) {
-        fprintf(stderr, "elim_gauss: ERROR: spazio insufficiente\n");
+        fprintf(stderr, "elim_gauss_pivoting: ERROR: spazio insufficiente\n");
         exit(1);
     }
 

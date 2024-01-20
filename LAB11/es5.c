@@ -1,3 +1,15 @@
+/* Esercizio 5
+data: 06/12/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge i file di input da un file chiamato 'sistema_sol.txt'.
+        Dal file deve leggere un sistema lineare con soluzione.
+Output: Il programma approssima la soluzione del sistema lineare Ax=b con il metodo
+        di Jacobi e scrive sul file 'convergenza.gp' la differenza una tabella con
+        il numero di iterazione nella prima colonna e la differenza tra l'iterata
+        attuale e la precedente di Jacobi nella seconda colonna. Poi stampa a schermo
+        la matrice A, il vettore b e la soluzione approssimata. Infine la tabella viene 
+        graficata a video con una call a gnuplot.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

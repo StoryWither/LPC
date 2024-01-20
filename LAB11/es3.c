@@ -1,3 +1,15 @@
+/* Esercizio 3
+data: 06/12/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge un intero s per scegliere il modo in cui genereare il
+        sistema lineare da risolvere. Nel caso s==1, legge anche i dati del
+        sistema dal file 'sistema.txt'. Successivamente legge un double positivo toll.
+
+Output: Il programma approssima la soluzione del sistema lineare Ax=b con il metodo
+        di Jacobi (con criterio d'arresto a priori), infine stampa a schermo la 
+        matrice A, il vettore b, la soluzione approssimata ed il massimo dei residui.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -6,7 +18,7 @@
 #include "vettori.h"
 #define MAX_DIM 100
 
-int Jacobi_posteriori(int size, double mat[size][size], double vec[size], int n, double toll, double result[size]);
+int Jacobi_priori(int size, double mat[size][size], double vec[size], int n, double toll, double result[size]);
 double calc_lambda (int size, double mat[size][size], int n);
 
 int main () {
@@ -47,7 +59,7 @@ int main () {
         scanf("%lf", &toll);
     } while (toll <= 0);
 
-    count = Jacobi_posteriori(MAX_DIM, A, b, n, toll, x);
+    count = Jacobi_priori(MAX_DIM, A, b, n, toll, x);
     calcolo_residui(MAX_DIM, A, b, x, r, n);
     res = max_vec_abs(MAX_DIM, r, n);
     printf("Matrice A:\n");
@@ -83,9 +95,9 @@ double calc_lambda (int size, double mat[size][size], int n) {
     return lambda;
 }
 
-int Jacobi_posteriori(int size, double mat[size][size], double vec[size], int n, double toll, double result[size]) {
+int Jacobi_priori(int size, double mat[size][size], double vec[size], int n, double toll, double result[size]) {
     if (n > size) {
-        fprintf(stderr, "Jacobi_posteriori: ERROR: spazio non sufficiente\n");
+        fprintf(stderr, "Jacobi_priori: ERROR: spazio non sufficiente\n");
         exit(1);
     }
 

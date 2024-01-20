@@ -1,3 +1,15 @@
+/* Esercizio 4
+data: 06/12/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge un intero positivo n per generare una matrice tridiagonale
+        A nxn, poi legge un double positivo toll.
+
+Output: Il programma approssima la soluzione del sistema lineare Ax=b con il metodo
+        di Jacobi ottimizzato per matrici tridiagonali.
+        Infine stampa a schermo la matrice A, il vettore b, la soluzione approssimata 
+        il numero di iterazioni ed il massimo dei residui.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

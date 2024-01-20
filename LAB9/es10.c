@@ -5,7 +5,7 @@ Input: Un intero positivo n.
 Output: Il programma genera due matrici triangolari inferiori nxn con
         componenti pseudo-random reali tra 0 e 100. Il programma calcola
         il prodotto tra le due matrici con un algoritmo ottimizzato per
-        le matrici triangolari inferiore. Il prodotto e` ancora una matrice
+        le matrici triangolari inferiori. Il prodotto e` ancora una matrice
         triangolare inferiore e il conto di operazioni (moltiplicazioni)
         asintotico e` (n^3)/6 (quello del prodotto tra matrici normali e` n^3).
         Infine il programma stampa le due matrici generate ed il loro prodotto.
@@ -87,4 +87,3 @@ int stampa_matrice(int size, double mat[size][size], int m, int n) {
 
     return 0;
 }
-

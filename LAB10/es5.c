@@ -1,3 +1,14 @@
+/* Esercizio 5
+data: 29/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge un intero positivo n per generare una matrice di Hilbert nxn, 
+        poi legge un vettore b e un intero di scelta per selezionare il metodo di soluzione 
+        del sistema H^n x = b.
+Output: Il programma risolve il sistema lineare con il MEG con pivoting parziale per righe
+        o con la fattorizzazione LU e stampa a schermo la matrice di Hilbert generata,
+        la soluzione trovata e il vettore dei residui.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

@@ -1,3 +1,15 @@
+/* Fattorizzazione_LU (Esercizio 4)
+data: 29/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge i file di input da un file di testo chiamato 'mat.txt',
+        Dal file legge un intero positivo n e le componenti di una matrice A nxn.
+
+Output: Il programma esegue la fattorizzazione LU sulla matrice A con il metodo di
+        eliminazione gaussiana (senza pivoting), in seguito stampa a video le matrici
+        L e U e il loro prodotto P = LU. Infine verificha se P == LU e stama a video
+        il risultato del controllo.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "matrici.h"
@@ -15,8 +27,8 @@ int main () {
     leggi_matrice_file(MAX_DIM, A, &n, &n, "mat.txt");
     copia_matrice(MAX_DIM, A, U, n, n);
 
-    printf("Matrice U:\n");
-    stampa_matrice(MAX_DIM, U, n, n);
+    printf("Matrice A:\n");
+    stampa_matrice(MAX_DIM, A, n, n);
 
     if (fattorizzazione_LU(MAX_DIM, U, L, n) == 1) {
         printf("Fattorizzazione fallita\n");

@@ -1,3 +1,15 @@
+/* Eliminazione_Gaussiana (Esercizio 1)
+data: 29/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge i file di input da un file di testo chiamato 'sistema.txt'.
+        Dal file legge un intero positivo n, le componenti (double) di una matrice A nxn
+        e di un vettore b di lunghezza n.
+
+Output: Il programma risolve il sistema lineare Ax=b con il metodo di eliminazione gaussiana
+        (senza pivoting) + sostitzuioni all'indietro, calcola il vettore dei residui r = b - Ax,
+        infine stampa a video la soluzione del sistema e il massimo dei residui.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "matrici.h"

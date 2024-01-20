@@ -1,3 +1,16 @@
+/* Esercizio 2
+data: 29/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge i file di input da un file di testo chiamato 'sistema.txt',
+        oppure genera i dati in maniera pseud-random.
+        Dal file legge un intero positivo n, le componenti (double) di una matrice A nxn
+        e di un vettore b di lunghezza n.
+
+Output: Il programma risolve il sistema lineare Ax=b con il metodo di eliminazione gaussiana
+        (senza pivoting) + sostitzuioni all'indietro, calcola il vettore dei residui r = b - Ax,
+        infine stampa a video la soluzione del sistema e il massimo dei residui.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -61,14 +74,12 @@ int elim_gauss (int size, double mat[size][size], double vec[size], int n) {
 
     double mult = 0;
 
-    for (int k = 0; k < n - 1; k++) { 
+    for (int k = 0; k < n; k++) { 
+        if (mat[k][k] == 0)
+            return 1;
         for (int i = k + 1; i < n; i++) {
             mult = mat[i][k] / mat[k][k];
-            mat[i][k + 1] -= mult * mat[k][k + 1];
-            if (mat[i][k + 1] == 0)
-                return 1;
-
-            for (int j = k + 2; j < n; j++)
+            for (int j = k + 1; j < n; j++)
                 mat[i][j] -= mult * mat[k][j];
             vec[i] -= mult * vec[k];
         }

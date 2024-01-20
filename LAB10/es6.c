@@ -1,3 +1,13 @@
+/* Inversione_Matrice_Gauss (Esercizio 6) 
+data: 29/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge i file di input da un file di testo chiamato 'mat.txt',
+        Dal file legge un intero positivo n e le componenti di una matrice A nxn.
+
+Output: Il programma usa il MEG con pivoting parziale per righe per invertire la matrice,
+        poi stampa a video la matrice A, l'inversa A^-1 ed il loro prodotto.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

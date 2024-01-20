@@ -1,3 +1,17 @@
+/* Elimingazione_Gaussiana_Pivoting (Esercizio 3)
+data: 29/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge i file di input da un file di testo chiamato 'sistema.txt',
+        oppure genera i dati in maniera pseud-random.
+        Dal file legge un intero positivo n, le componenti (double) di una matrice A nxn
+        e di un vettore b di lunghezza n.
+
+Output: Il programma risolve il sistema lineare Ax=b con il metodo di eliminazione gaussiana
+        (con pivoting parziale per righe) + sostitzuioni all'indietro, calcola il vettore 
+        dei residui r = b - Ax, infine stampa a video la soluzione del sistema e il 
+        massimo dei residui.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

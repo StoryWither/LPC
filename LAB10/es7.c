@@ -1,3 +1,15 @@
+/* Esercizio 7 
+data: 29/11/2023
+autore: Sebastian Ferrigno
+Input: Il programma legge i file di input da un file di testo chiamato 'sistema.txt',
+        Dal file legge un intero positivo n, le componenti di una matrice A nxn e di
+        un vettore b di lunghezza n. Si presuppone che la matrice A sia tridiagonale.
+
+Output: Il programma risolve il sistema lineare Ax = b con versione ottimizzate del MEG
+        e delle sostituzioni all'indietro per matrici tridiagonali. Il costo operazioni
+        (moltiplicazioni e divisioni) asintotico e` 5n.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "matrici.h"

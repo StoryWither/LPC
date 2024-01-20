@@ -1,3 +1,18 @@
+/* Esercizio 2
+data: 13/12/2023
+autore: Sebastian Ferrigno
+Input: Il programma offre una scelta di funzioni con un menu`. L'utente sceglie
+        una funzione inserendo un intero di scelta s. Poi inserisce gli estremi
+        destro e sinistro di un intervallo [a, b], il numero di nodi di interpolazione n
+        ed il numero m di punti da interpolare. 
+
+Output: Il programma usa l'interpolazione di lagrange su una griglia di n nodi randomicamente
+        distribuiti nell'intervallo [a, b] per calcolare in m punti uniformemente distribuiti
+        l'approssimazione polinomiale di f. Il programma scrive su un file 'punti.gp' una tabella
+        contenente i punti approssimati dal polinomio. Poi grafica a video i punti ottenuti a fianco
+        della funzione scelta con gnuplot e infine stampa a schermo il massimo dei residui.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -7,7 +22,7 @@
 
 double f (int scelta, double x);
 int crea_griglia (double left, double right, int n, int size, double nodes[size]);
-double intpol_laplace (int size, double nodes[size], int n, int scelta, double x);
+double interpolazione_lagrange (int size, double nodes[size], int n, int scelta, double x);
 
 int main () {
     int s, n, m;
@@ -45,7 +60,7 @@ int main () {
     max = -1;
     for (int i = 1; i <= m; i++) {
         z = a + i * h;
-        pz = intpol_laplace(Nmax, griglia, n, s, z);
+        pz = interpolazione_lagrange(Nmax, griglia, n, s, z);
         fprintf(file, "%lf %lf\n", z, pz);
         res = fabs(f(s, z) - pz);
         max = max < res ? res : max;
@@ -58,9 +73,9 @@ int main () {
     return 0;
 }
 
-double intpol_laplace (int size, double nodes[size], int n, int scelta, double x) {
+double interpolazione_lagrange (int size, double nodes[size], int n, int scelta, double x) {
     if (n > size) {
-        fprintf(stderr, "intpol_laplace: ERROR: spazio insufficiente\n");
+        fprintf(stderr, "interpolazione_lagrange: ERROR: spazio insufficiente\n");
         return 1;
     }
 

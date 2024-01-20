@@ -1,3 +1,16 @@
+/* Interpolazione_Lagrange (Esercizio 1)
+data: 13/12/2023
+autore: Sebastian Ferrigno
+Input: Il programma offre una scelta di funzioni con un menu`. L'utente sceglie
+        una funzione inserendo un intero di scelta s. Poi inserisce gli estremi
+        destro e sinistro di un intervallo [a, b], il numero di nodi di interpolazione n
+        ed un punto z in cui calcolare la funzione scelta.
+
+Output: Il programma usa l'interpolazione di lagrange su una griglia di n nodi uniformemente
+        distribuiti nell'intervallo [a, b] per calcolare una approssimazione di f(z). In
+        seguito stampa a schermo il valore del polinomio interpolato ed il residuo.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -6,7 +19,7 @@
 
 double f (int scelta, double x);
 int crea_griglia (double left, double right, int n, int size, double nodes[size]);
-double intpol_laplace (int size, double nodes[size], int n, int scelta, double x);
+double interpolazione_lagrange (int size, double nodes[size], int n, int scelta, double x);
 
 int main () {
     int s, n;
@@ -36,7 +49,7 @@ int main () {
     printf("Inserire il punto da calcolare con il polinomio interpolato:");
     scanf("%lf", &z);
     crea_griglia(a, b, n, Nmax, griglia); 
-    pz = intpol_laplace(Nmax, griglia, n, s, z);
+    pz = interpolazione_lagrange(Nmax, griglia, n, s, z);
     res = f(s, z) - pz;
     printf("Valore del polinomio interpolato: %lf\n", pz);
     printf("Residuo:%lf\n", res);
@@ -45,9 +58,9 @@ int main () {
     return 0;
 }
 
-double intpol_laplace (int size, double nodes[size], int n, int scelta, double x) {
+double interpolazione_lagrange (int size, double nodes[size], int n, int scelta, double x) {
     if (n > size) {
-        fprintf(stderr, "intpol_laplace: ERROR: spazio insufficiente\n");
+        fprintf(stderr, "interpolazione_lagrange: ERROR: spazio insufficiente\n");
         return 1;
     }
 

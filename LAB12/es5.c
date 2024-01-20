@@ -1,3 +1,13 @@
+/* Esercizio 5
+data: 13/12/2023
+autore: Sebastian Ferrigno
+Input: Un intero positivo n e un double positivo toll.
+
+Output: Il programma approssima sqrt(n) sia con il metodo delle secanti che con il metodo
+        di newton, poi stampa a video una tabella contente il numero d'iterazione k,
+        l'errore del metodo di newton e l'errore del metodo delle secanti nelle 3 colonne.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

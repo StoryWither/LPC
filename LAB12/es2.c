@@ -1,3 +1,15 @@
+/* Newton (Esercizio 2)
+data: 13/12/2023
+autore: Sebastian Ferrigno
+Input: Il programma offre una scelta di funzioni con un menu`. L'utente sceglie
+        una funzione inserendo un intero di scelta s. Poi inserisce un punto di 
+        innesco x0, un double positivo toll.
+
+Output: Il programma approssima il valore di una radice della funzione scelta
+        con il metodo di Newton. Infine stampa a video la radice approssimata 
+        ed il residuo f(x).
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

@@ -1,3 +1,15 @@
+/* Bisezione (Esercizio 1)
+data: 13/12/2023
+autore: Sebastian Ferrigno
+Input: Il programma offre una scelta di funzioni con un menu`. L'utente sceglie
+        una funzione inserendo un intero di scelta s. Poi inserisce gli estremi
+        destro e sinistro di un intervallo [a, b], un double positivo toll.
+
+Output: Il programma approssima il valore di una radice della funzione scelta
+        nell'intervallo [a, b] con il metodo di bisezione. Infine stampa a video 
+        la radice approssimata ed il residuo f(x).
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

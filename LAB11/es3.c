@@ -80,7 +80,7 @@ double calc_lambda (int size, double mat[size][size], int n) {
         exit(1);
     }
 
-    double sum, lambda = -1;
+    double sum, lambda = 0;
     for (int i = 0; i < n; i++) {
         sum = 0;
         for (int j = 0; j < n; j++) {
@@ -106,7 +106,7 @@ int Jacobi_priori(int size, double mat[size][size], double vec[size], int n, dou
     double prev[size];
     int iter = 0;
     int count = 0;
-    delta = -1;
+    delta = 0;
     for (int i = 0; i < n; i++) {
         temp = fabs(vec[i] / mat[i][i]);
         if (temp > delta)

@@ -3,13 +3,15 @@ data: 06/12/2023
 autore: Sebastian Ferrigno
 Input: Il programma legge i file di input da un file chiamato 'sistema_sol.txt'.
         Dal file deve leggere un sistema lineare con soluzione.
+
 Output: Il programma approssima la soluzione del sistema lineare Ax=b con il metodo
-        di Jacobi e scrive sul file 'convergenza.gp' la differenza una tabella con
-        il numero di iterazione nella prima colonna e la differenza tra l'iterata
-        attuale e la precedente di Jacobi nella seconda colonna. Poi stampa a schermo
-        la matrice A, il vettore b e la soluzione approssimata. Infine la tabella viene 
-        graficata a video con una call a gnuplot.
+        di Jacobi (con criterio d'arresto a posteriori) e scrive sul file 'convergenza.txt' 
+        una tabella con il numero di iterazioni nella prima colonna e la differenza tra l'iterata 
+        attuale e la precedente di Jacobi nella seconda colonna. Poi stampa a schermo la matrice A, 
+        il vettore b e la soluzione approssimata. Infine la tabella viene graficata a video 
+        con una call a gnuplot.
 */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -17,7 +19,8 @@ Output: Il programma approssima la soluzione del sistema lineare Ax=b con il met
 #include "vettori.h"
 #define MAX_DIM 100
 
-int Jacobi (int size, double mat[size][size], double vec[size], double sol[size], int n, int nmax, double toll, double result[size]);
+int Jacobi_posteriori_gplot (int size, double mat[size][size], double vec[size], double sol[size], int n, int nmax, double toll, double result[size]);
+double calc_lambda (int size, double mat[size][size], int n);
 int leggi_sistema_sol_file (int size, double mat[size][size], double vec[size], double sol[size], char *nomefile);
 
 int main () {
@@ -35,7 +38,7 @@ int main () {
         scanf("%lf", &toll);
     } while (toll <= 0);
 
-    count = Jacobi(MAX_DIM, A, b, x_esatta, n, nmax, toll, x);
+    count = Jacobi_posteriori_gplot(MAX_DIM, A, b, x_esatta, n, nmax, toll, x);
     printf("Matrice A:\n");
     stampa_matrice(MAX_DIM, A, n, n);
     printf("Vettore b:\n");
@@ -43,19 +46,26 @@ int main () {
     printf("Soluzione approssimata:\n");
     stampa_vettore(MAX_DIM, x, n);
     printf("Numero di iterazioni: %d\n", count);
-    system("gnuplot << EOF\nplot \"convergenza.gp\"\npause mouse close\nEOF");
+
+    FILE* f = fopen("comando.gp", "w");
+    fprintf(f, "plot \"convergenza.txt\"\n");
+    fprintf(f, "pause mouse close\n");
+    fclose(f);
+    system("gnuplot comando.gp");
+    //system("gnuplot << EOF\nplot \"convergenza.txt\"\npause mouse close\nEOF");
 
     return 0;
 }
 
-int Jacobi (int size, double mat[size][size], double vec[size], double sol[size], int n, int nmax, double toll, double result[size]) {
+int Jacobi_posteriori_gplot (int size, double mat[size][size], double vec[size], double sol[size], int n, int nmax, double toll, double result[size]) {
     if (n > size) {
-        fprintf(stderr, "Jacobi: ERROR: spazio non sufficiente\n");
+        fprintf(stderr, "Jacobi_posteriori_gplot: ERROR: spazio non sufficiente\n");
         exit(1);
     }
 
-    FILE* file = fopen("convergenza.gp", "w");
+    FILE* file = fopen("convergenza.txt", "w");
 
+    double one_minus_lambda = 1 - calc_lambda(size, mat, n);
     double delta, temp;
     double prev[size];
     int count = 0;
@@ -63,7 +73,7 @@ int Jacobi (int size, double mat[size][size], double vec[size], double sol[size]
         prev[i] = 0;
 
     do {
-        delta = -1;
+        delta = 0;
         for (int i = 0; i < n; i++) {
             result[i] = vec[i];
             for (int j = 0; j < n; j++) {
@@ -82,7 +92,7 @@ int Jacobi (int size, double mat[size][size], double vec[size], double sol[size]
             prev[i] = result[i];
 
         count++;
-    } while (count < nmax && delta > toll);
+    } while (count < nmax && (delta / one_minus_lambda) > toll);
 
     fclose(file);
 
@@ -112,4 +122,25 @@ int leggi_sistema_sol_file (int size, double mat[size][size], double vec[size], 
 
     fclose(file);
     return n;
+}
+
+double calc_lambda (int size, double mat[size][size], int n) {
+    if (n > size) {
+        fprintf(stderr, "calc_lambda: ERROR: spazio non sufficiente\n");
+        exit(1);
+    }
+
+    double sum, lambda = 0;
+    for (int i = 0; i < n; i++) {
+        sum = 0;
+        for (int j = 0; j < n; j++) {
+            if (j != i)
+                sum += fabs(mat[i][j]);
+        }
+        sum /= fabs(mat[i][i]);
+        if (sum > lambda)
+            lambda = sum;
+    }
+
+    return lambda;
 }

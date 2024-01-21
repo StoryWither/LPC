@@ -68,14 +68,19 @@ int Jacobi_tridiagonale (int size, double mat[size][size], double vec[size], int
         prev[i] = 0;
 
     do {
-        delta = -1;
-        for (int i = 0; i < n; i++) {
+        result[0] = (vec[0] - mat[0][1] * prev[1]) / mat[0][0];
+        delta = fabs(result[0] - prev[0]); 
+        for (int i = 1; i < n - 1; i++) {
             result[i] = vec[i] - mat[i][i - 1] * prev[i - 1] - mat[i][i + 1] * prev[i + 1];
             result[i] /= mat[i][i];
             temp = fabs(result[i] - prev[i]); 
             if (temp > delta)
                 delta = temp;
         }
+        result[n-1] = (vec[n-1] - mat[n-1][n-2] * prev[n-2]) / mat[n-1][n-1];
+        temp = fabs(result[n-1] - prev[n-1]); 
+        if (temp > delta) 
+            delta = temp;
 
         for (int i = 0; i < n; i++)
             prev[i] = result[i];

@@ -48,7 +48,7 @@ double calc_lambda (int size, double mat[size][size], int n) {
         exit(1);
     }
 
-    double sum, lambda = -1;
+    double sum, lambda = 0;
     for (int i = 0; i < n; i++) {
         sum = 0;
         for (int j = 0; j < n; j++) {
@@ -77,7 +77,7 @@ int Jacobi_posteriori (int size, double mat[size][size], double vec[size], int n
         prev[i] = 0;
 
     do {
-        delta = -1;
+        delta = 0;
         for (int i = 0; i < n; i++) {
             result[i] = vec[i];
             for (int j = 0; j < n; j++) {

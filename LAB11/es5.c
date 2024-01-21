@@ -52,7 +52,6 @@ int main () {
     fprintf(f, "pause mouse close\n");
     fclose(f);
     system("gnuplot comando.gp");
-    //system("gnuplot << EOF\nplot \"convergenza.txt\"\npause mouse close\nEOF");
 
     return 0;
 }

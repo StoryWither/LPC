@@ -21,13 +21,14 @@ Output: Il programma usa l'interpolazione di lagrange su una griglia di n nodi u
 
 double f (int scelta, double x);
 int crea_griglia (double left, double right, int n, int size, double nodes[size]);
-double interpolazione_lagrange (int size, double nodes[size], int n, int scelta, double x);
+int crea_pesi (int size, int n, double nodes[size], double weights[size]);
+double interpolazione_lagrange_baricentro (int size, double nodes[size], double weights[size], int n, int scelta, double x);
 void plot (int scelta);
 
 int main () {
     int s, n, m;
     double a, b, z, pz, max, res;
-    double griglia[Nmax];
+    double griglia[Nmax], pesi[Nmax];
     FILE* file = fopen("punti.txt", "w");
     printf("Scegliere una funzione dal menu:\n");
     printf("1) sin(x)\n");
@@ -55,12 +56,13 @@ int main () {
         scanf("%d", &m);
     } while (m <= 0);
     crea_griglia(a, b, n, Nmax, griglia); 
+    crea_pesi(Nmax, n, griglia, pesi);
 
     double h = (b - a) / (m + 1);
     max = 0;
     for (int i = 1; i <= m; i++) {
         z = a + i * h;
-        pz = interpolazione_lagrange(Nmax, griglia, n, s, z);
+        pz = interpolazione_lagrange_baricentro(Nmax, griglia, pesi, n, s, z);
         fprintf(file, "%lf %lf\n", z, pz);
         res = fabs(f(s, z) - pz);
         max = max < res ? res : max;
@@ -73,22 +75,25 @@ int main () {
     return 0;
 }
 
-double interpolazione_lagrange (int size, double nodes[size], int n, int scelta, double x) {
+double interpolazione_lagrange_baricentro (int size, double nodes[size], double weights[size], int n, int scelta, double x) {
     if (n > size) {
-        fprintf(stderr, "interpolazione_lagrange: ERROR: spazio insufficiente\n");
-        return 1;
+        fprintf(stderr, "interpolazione_lagrange_baricentro: ERROR: spazio insufficiente\n");
+        exit(1);
     }
 
-    double li;
-    double pol = 0;
+    double pol, temp;
+    double num = 0;
+    double den = 0;
+    for (int i = 0; i <= n; i++)
+        if (x - nodes[i] == 0)
+            return f(scelta, nodes[i]);
+    
     for (int i = 0; i <= n; i++) {
-        li = 1;
-        for (int j = 0; j <= n; j++) {
-            if (j != i)
-                li *= (x - nodes[j]) / (nodes[i] - nodes[j]);
-        }
-        pol += li * f(scelta, nodes[i]);
+        temp =  weights[i] / (x - nodes[i]);
+        den += temp;
+        num += temp * f(scelta, nodes[i]);
     }
+    pol = num / den;
 
     return pol;
 }
@@ -103,6 +108,22 @@ int crea_griglia (double left, double right, int n, int size, double nodes[size]
     for (int i = 0; i <= n; i++)
         nodes[i] = left + i * h;
     
+    return 0;
+}
+
+int crea_pesi (int size, int n, double nodes[size], double weights[size]) {
+    if (n > size) {
+        fprintf(stderr, "crea_pesi: ERROR: spazio insufficiente\n");
+        return 1;
+    }
+
+    for (int i = 0; i <= n; i++) {
+        weights[i] = 1;
+        for (int j = 0; j <= n; j++)
+            if (j != i)
+                weights[i] *= 1.0 / (nodes[i] - nodes[j]);
+    }
+
     return 0;
 }
 

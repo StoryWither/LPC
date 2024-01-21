@@ -76,7 +76,7 @@ int main () {
 double interpolazione_lagrange (int size, double nodes[size], int n, int scelta, double x) {
     if (n > size) {
         fprintf(stderr, "interpolazione_lagrange: ERROR: spazio insufficiente\n");
-        return 1;
+        exit(1);
     }
 
     double li;

@@ -18,6 +18,7 @@ Output: Il programma approssima il valore di una radice della funzione scelta
 
 double bisezione (double left, double right, int scelta, double toll, int max_iter);
 double f (int scelta, double x);
+void movie (int scekta, int n);
 
 int main () {
     int s;
@@ -54,7 +55,6 @@ int main () {
     printf("Radice approssimata: %lf\n", x);
     printf("Residuo: %lf\n", fx);
 
-
     return 0;
 }
 
@@ -73,14 +73,18 @@ double bisezione (double left, double right, int scelta, double toll, int max_co
         exit(1);
     }
 
+    FILE *file = fopen("successione.txt", "w");
     double middle, fmiddle;
     int count = 0;
 
     do {
        middle = (left + right) / 2;
        fmiddle = f(scelta, middle);
+        fprintf(file, "%lf %lf\n", middle, fmiddle);
 
        if (fmiddle == 0) {
+           fclose(file);
+           movie(scelta, count);
            return middle;
        } else if (fleft * fmiddle < 0) {
            right = middle;
@@ -93,12 +97,82 @@ double bisezione (double left, double right, int scelta, double toll, int max_co
        count++;
     } while ((right - left > toll || fabs(fmiddle) > toll) && count < max_count);
 
+    fclose(file);
     if (count >= max_count) {
         printf("bisezione: Il metodo non converge (a meno della tolleranza richiesta) in %d iterazioni\n", max_count);
         exit(0);
     }
 
+    movie(scelta, count);
     return (left + right) / 2;
+}
+
+void movie (int scelta, int n) {
+    FILE* file;
+    /* apro in scrittura il file "comandi.gp " per registrarci
+    * il comando che dovra ‘ essere eseguito da GNUplot
+    */
+    file = fopen("comandi.gp", "w");
+    switch(scelta) {
+    case 1:
+        fprintf(file, "plot exp(x) - 1 w l \n");
+        break;
+    case 2:
+        fprintf(file, "plot x * x * x - 8 w l \n");
+        break;
+    case 3:
+        fprintf(file, "plot cos(x) w l \n");
+        break;
+    case 4:
+        fprintf(file, "plot atan(x) w l \n");
+        break;
+    case 5:
+        fprintf(file, "plot sin(3*x) w l \n");
+        break;  
+    case 6:
+        fprintf(file, "plot log(1 + x) w l \n");
+        break;  
+    case 7:
+        fprintf(file, "plot exp(-x * x) - 0.5 w l \n");
+        break;  
+    case 8:
+        fprintf(file, "plot (1 - x*x) * (1 - x*x) w l \n");
+        break;  
+    case 9:
+        fprintf(file, "plot x*x*x - 2*x*x + 3*x - 1 w l \n");
+        break;  
+    case 10:
+        fprintf(file, "plot abs(x*x*x - x + 1) w l \n");
+        break;  
+    case 11:
+        fprintf(file, "plot x*x*x*x*x + 3*x*x*x*x + 2*x*x*x - x*x - 5*x + 1 w l \n");
+        break;  
+    case 12:
+        fprintf(file, "plot 1 / (1 + x*x) - 0.3 w l \n");
+        break;
+    case 13:
+        fprintf(file, "plot abs(2*x) - 1 w l \n");
+        break;
+    default:
+        fprintf(stderr, "movie: ERROR: scelta non valida\n");
+        fclose(file);
+        exit(1);
+        break;
+    }
+
+    // rimuove lable dalla figura
+    fprintf (file, "unset key \n");
+    fprintf (file, "pause(-1) \n");
+    /*
+    * scrivo sul file il comando da eseguire
+    */
+    for (int i = 0; i < n ; i++) {
+        fprintf (file, "replot\"successione.txt\" every ::%d::%d pt 4 ps 3 \n", i, i);
+        fprintf (file, "pause(-1) \n");
+    }
+    fprintf(file, "pause mouse close\n");
+    fclose (file);
+    system ("gnuplot \"comandi.gp\"");
 }
 
 double f (int scelta, double x) {

@@ -16,8 +16,8 @@ Output: Il programma approssima sqrt(n) sia con il metodo delle secanti che con 
 
 double f (int scelta, double x);
 double df(int scelta, double x);
-double newton (int n, double toll, int max_count, double arr[max_count], int* count);
-double secanti (int n, double toll, int max_count, double arr[max_count], int* count);
+int newton (int n, double toll, int max_count, double arr[max_count]);
+int secanti (int n, double toll, int max_count, double arr[max_count]);
 
 int main () {
     int n, nnewt, nsec, max;
@@ -30,8 +30,8 @@ int main () {
     do {
         scanf("%lf", &toll);
     } while (toll <= 0);
-    newton(n, toll, Nmax, newt, &nnewt);
-    secanti(n, toll, Nmax, sec, &nsec);
+    nnewt = newton(n, toll, Nmax, newt);
+    nsec = secanti(n, toll, Nmax, sec);
     max = nnewt > nsec ? nnewt : nsec;
     printf("Iter\t Newton\t\t Secanti\n");
     for (int i = 0; i < max; i++)
@@ -40,41 +40,43 @@ int main () {
     return 0;
 }
 
-double newton (int n, double toll, int max_count, double arr[max_count], int* count) {
+int newton (int n, double toll, int max_count, double arr[max_count]) {
     if (toll <= 0 || max_count <= 0) {
         fprintf(stderr, "newton: ERROR: parametri di input non validi\n");
         exit(1);
     }
 
+    int count;
     double sqrtn = sqrt(n);
     double x = n;
     double fx = x*x - n; 
     double phix = x - fx / (2*x); 
 
 
-    *count = 0;
-    while ((((x + toll/2) * (x + toll/2) - n) * ((x - toll/2) * (x-toll/2) - n) > 0 || fabs(fx) > toll) && *count < max_count) {
-        arr[*count] = x - sqrtn;
+    count = 0;
+    while ((((x + toll/2) * (x + toll/2) - n) * ((x - toll/2) * (x-toll/2) - n) > 0 || fabs(fx) > toll) && count < max_count) {
+        arr[count] = x - sqrtn;
         x = phix;
         fx = x*x - n;
         phix = x - fx / (2*x);
-        (*count)++;
+        (count)++;
     }
 
-    if (*count >= max_count) {
+    if (count >= max_count) {
         printf("newton: Il metodo non converge (a meno della tolleranza richiesta) in %d iterazioni\n", max_count);
         exit(0);
     }
 
-    return x;
+    return count;
 }
 
-double secanti (int n, double toll, int max_count, double arr[max_count], int* count) {
+int secanti (int n, double toll, int max_count, double arr[max_count]) {
     if (toll <= 0 || max_count <= 0) {
         fprintf(stderr, "secanti: ERROR: parametri di input non validi\n");
         exit(1);
     }
 
+    int count;
     double sqrtn = sqrt(n);
     double prevx = n;
     double prevf = prevx * prevx - n;
@@ -82,21 +84,21 @@ double secanti (int n, double toll, int max_count, double arr[max_count], int* c
     double fx = x*x - n;
     double phix = (prevx * fx - x * prevf) / (fx - prevf); 
 
-    *count = 0;
-    while ((((x + toll/2) * (x + toll/2) - n) * ((x - toll/2) * (x-toll/2) - n) > 0 || fabs(fx) > toll) && *count < max_count) {
-        arr[*count] = x - sqrtn;
+    count = 0;
+    while ((((x + toll/2) * (x + toll/2) - n) * ((x - toll/2) * (x-toll/2) - n) > 0 || fabs(fx) > toll) && count < max_count) {
+        arr[count] = x - sqrtn;
         prevx = x;
         prevf = fx;
         x = phix;
         fx = x*x - n;
         phix = (prevx * fx - x * prevf) / (fx - prevf); 
-        (*count)++;
+        (count)++;
     }
 
-    if (*count >= max_count) {
+    if (count >= max_count) {
         printf("secanti: Il metodo non converge (a meno della tolleranza richiesta) in %d iterazioni\n", max_count);
         exit(0);
     }
 
-    return x;
+    return count;
 }

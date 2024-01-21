@@ -1,4 +1,4 @@
-/* Esercizio 2
+/* Esercizio 3
 data: 20/12/2023
 autore: Sebastian Ferrigno
 Input: Il programma offre una scelta di funzioni con un menu`. L'utente sceglie
@@ -6,11 +6,11 @@ Input: Il programma offre una scelta di funzioni con un menu`. L'utente sceglie
         destro e sinistro di un intervallo [a, b], il numero di nodi di interpolazione n
         ed il numero m di punti da interpolare. 
 
-Output: Il programma usa l'interpolazione di lagrange su una griglia di n nodi uniformemente
+Output: Il programma usa l'interpolazione di lagrange su una griglia di k=1,..,n nodi uniformemente
         distribuiti nell'intervallo [a, b] per calcolare in m punti uniformemente distribuiti
-        l'approssimazione polinomiale di f. Il programma scrive su un file 'punti.txt' una tabella
-        contenente i punti approssimati dal polinomio. Poi grafica a video i punti ottenuti a fianco
-        della funzione scelta con gnuplot e infine stampa a schermo il massimo dei residui.
+        l'approssimazione polinomiale di f. Il programma calcola per ogni valore di k l'errore
+        massimo e stampa a schermo una tabella con il numero di nodi k nella prima colonna
+        e l'errore massimo nella seconda.
 */
 
 #include <stdio.h>
@@ -22,13 +22,11 @@ Output: Il programma usa l'interpolazione di lagrange su una griglia di n nodi u
 double f (int scelta, double x);
 int crea_griglia (double left, double right, int n, int size, double nodes[size]);
 double interpolazione_lagrange (int size, double nodes[size], int n, int scelta, double x);
-void plot (int scelta);
 
 int main () {
     int s, n, m;
     double a, b, z, pz, max, res;
     double griglia[Nmax];
-    FILE* file = fopen("punti.txt", "w");
     printf("Scegliere una funzione dal menu:\n");
     printf("1) sin(x)\n");
     printf("2) ln(x)\n");
@@ -57,18 +55,19 @@ int main () {
     crea_griglia(a, b, n, Nmax, griglia); 
 
     double h = (b - a) / (m + 1);
-    max = 0;
-    for (int i = 1; i <= m; i++) {
-        z = a + i * h;
-        pz = interpolazione_lagrange(Nmax, griglia, n, s, z);
-        fprintf(file, "%lf %lf\n", z, pz);
-        res = fabs(f(s, z) - pz);
-        max = max < res ? res : max;
-    }
 
-    fclose(file);
-    plot(s);
-    printf("Massimo residui: %lf\n", max);
+    printf("N. nodi\t Max. residui\n");
+    for (int k = 1; k <= n; k++) {
+        max = 0;
+        for (int i = 1; i <= m; i++) {
+            z = a + i * h;
+            pz = interpolazione_lagrange(Nmax, griglia, k, s, z);
+            res = fabs(f(s, z) - pz);
+            max = max < res ? res : max;
+        }
+
+        printf("%d\t %lf\n", k, max);
+    }
 
     return 0;
 }
@@ -138,43 +137,4 @@ double f (int scelta, double x) {
         exit(1);
         break;
     }
-}
-
-void plot (int scelta) {
-    FILE* f = fopen("comandi.gp", "w");
-    switch(scelta) {
-    case 1:
-        fprintf(f, "plot sin(x)\n");
-        break;
-    case 2:
-        fprintf(f, "plot log(x)\n");
-        break;
-    case 3:
-        fprintf(f, "plot exp(x)\n");
-        break;
-    case 4:
-        fprintf(f, "plot x*x*x*x*x + 3*x*x*x*x + 2*x*x*x - x*x - 5*x + 1\n");
-        break;
-    case 5:
-        fprintf(f, "plot 1 / (1 + x*x)\n");
-        break;  
-    case 6:
-        fprintf(f, "plot abs(x)\n");
-        break;  
-    case 7:
-        fprintf(f, "sin(x*x)\n");
-        break;  
-    case 8:
-        fprintf(f, "abs(sin(x*x))\n");
-        break;  
-    default:
-        fprintf(stderr, "plot: ERROR: scelta non valida\n");
-        fclose(f);
-        exit(1);
-        break;
-    }
-    fprintf(f, "replot \"punti.txt\"\n");
-    fprintf(f, "pause mouse close\n");
-    fclose(f);
-    system("gnuplot comandi.gp");
 }

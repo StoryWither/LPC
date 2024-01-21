@@ -1,4 +1,4 @@
-/* Esercizio 2
+/* Esercizio 4
 data: 20/12/2023
 autore: Sebastian Ferrigno
 Input: Il programma offre una scelta di funzioni con un menu`. L'utente sceglie
@@ -6,11 +6,11 @@ Input: Il programma offre una scelta di funzioni con un menu`. L'utente sceglie
         destro e sinistro di un intervallo [a, b], il numero di nodi di interpolazione n
         ed il numero m di punti da interpolare. 
 
-Output: Il programma usa l'interpolazione di lagrange su una griglia di n nodi randomicamente
+Output: Il programma usa l'interpolazione di lagrange su una griglia di k=1,..,n nodi randomicamente
         distribuiti nell'intervallo [a, b] per calcolare in m punti uniformemente distribuiti
-        l'approssimazione polinomiale di f. Il programma scrive su un file 'punti.gp' una tabella
-        contenente i punti approssimati dal polinomio. Poi grafica a video i punti ottenuti a fianco
-        della funzione scelta con gnuplot e infine stampa a schermo il massimo dei residui.
+        l'approssimazione polinomiale di f. Il programma calcola per ogni valore di k l'errore
+        massimo e stampa a schermo una tabella con il numero di nodi k nella prima colonna
+        e l'errore massimo nella seconda.
 */
 
 #include <stdio.h>
@@ -21,14 +21,13 @@ Output: Il programma usa l'interpolazione di lagrange su una griglia di n nodi r
 #define Nmax 1000
 
 double f (int scelta, double x);
-int crea_griglia (double left, double right, int n, int size, double nodes[size]);
+int crea_griglia_random (double left, double right, int n, int size, double nodes[size]);
 double interpolazione_lagrange (int size, double nodes[size], int n, int scelta, double x);
 
 int main () {
     int s, n, m;
     double a, b, z, pz, max, res;
     double griglia[Nmax];
-    FILE* file = fopen("punti.gp", "w");
     printf("Scegliere una funzione dal menu:\n");
     printf("1) sin(x)\n");
     printf("2) ln(x)\n");
@@ -54,21 +53,22 @@ int main () {
     do {
         scanf("%d", &m);
     } while (m <= 0);
-    crea_griglia(a, b, n, Nmax, griglia); 
+    crea_griglia_random(a, b, n, Nmax, griglia); 
 
     double h = (b - a) / (m + 1);
-    max = -1;
-    for (int i = 1; i <= m; i++) {
-        z = a + i * h;
-        pz = interpolazione_lagrange(Nmax, griglia, n, s, z);
-        fprintf(file, "%lf %lf\n", z, pz);
-        res = fabs(f(s, z) - pz);
-        max = max < res ? res : max;
-    }
 
-    fclose(file);
-    system("gnuplot << EOF\nplot sin(x), \"punti.gp\"\npause mouse close\nEOF");
-    printf("Massimo residui: %lf\n", max);
+    printf("N. nodi\t Max. residui\n");
+    for (int k = 1; k <= n; k++) {
+        max = 0;
+        for (int i = 1; i <= m; i++) {
+            z = a + i * h;
+            pz = interpolazione_lagrange(Nmax, griglia, k, s, z);
+            res = fabs(f(s, z) - pz);
+            max = max < res ? res : max;
+        }
+
+        printf("%d\t %lf\n", k, max);
+    }
 
     return 0;
 }
@@ -93,9 +93,9 @@ double interpolazione_lagrange (int size, double nodes[size], int n, int scelta,
     return pol;
 }
 
-int crea_griglia (double left, double right, int n, int size, double nodes[size]) {
+int crea_griglia_random (double left, double right, int n, int size, double nodes[size]) {
     if (n > size) {
-        fprintf(stderr, "crea_griglia: ERROR: spazio insufficiente\n");
+        fprintf(stderr, "crea_griglia_random: ERROR: spazio insufficiente\n");
         return 1;
     }
     srand(time(NULL));

@@ -1,4 +1,4 @@
-plot exp(x) w l 
+plot x * x * x - 8 w l 
 unset key 
 pause(-1) 
 replot"successione.txt" every ::0::0 pt 4 ps 3 
@@ -35,27 +35,4 @@ replot"successione.txt" every ::15::15 pt 4 ps 3
 pause(-1) 
 replot"successione.txt" every ::16::16 pt 4 ps 3 
 pause(-1) 
-replot"successione.txt" every ::17::17 pt 4 ps 3 
-pause(-1) 
-replot"successione.txt" every ::18::18 pt 4 ps 3 
-pause(-1) 
-replot"successione.txt" every ::19::19 pt 4 ps 3 
-pause(-1) 
-replot"successione.txt" every ::20::20 pt 4 ps 3 
-pause(-1) 
-replot"successione.txt" every ::21::21 pt 4 ps 3 
-pause(-1) 
-replot"successione.txt" every ::22::22 pt 4 ps 3 
-pause(-1) 
-replot"successione.txt" every ::23::23 pt 4 ps 3 
-pause(-1) 
-replot"successione.txt" every ::24::24 pt 4 ps 3 
-pause(-1) 
-replot"successione.txt" every ::25::25 pt 4 ps 3 
-pause(-1) 
-replot"successione.txt" every ::26::26 pt 4 ps 3 
-pause(-1) 
-replot"successione.txt" every ::27::27 pt 4 ps 3 
-pause(-1) 
-replot"successione.txt" every ::28::28 pt 4 ps 3 
-pause(-1) 
+pause mouse close

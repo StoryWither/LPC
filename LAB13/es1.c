@@ -54,7 +54,6 @@ int main () {
     printf("Valore del polinomio interpolato: %lf\n", pz);
     printf("Residuo:%lf\n", res);
 
-
     return 0;
 }
 
